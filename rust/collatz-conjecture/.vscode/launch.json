@@ -1,0 +1,83 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'collatz_conjecture'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=collatz_conjecture"
+                ],
+                "filter": {
+                    "name": "collatz_conjecture",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'collatz_conjecture'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=collatz_conjecture",
+                    "--package=collatz_conjecture"
+                ],
+                "filter": {
+                    "name": "collatz_conjecture",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'collatz_conjecture'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=collatz_conjecture",
+                    "--package=collatz_conjecture"
+                ],
+                "filter": {
+                    "name": "collatz_conjecture",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'collatz-conjecture'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=collatz-conjecture",
+                    "--package=collatz_conjecture"
+                ],
+                "filter": {
+                    "name": "collatz-conjecture",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
