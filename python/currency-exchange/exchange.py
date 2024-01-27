@@ -1,4 +1,3 @@
-import math
 """Functions for calculating steps in exchaning currency.
 
 Python numbers documentation: https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex
@@ -12,12 +11,7 @@ def exchange_money(budget: float, exchange_rate: float) -> float:
     :param exchange_rate: float - unit value of the foreign currency.
     :return: float - exchanged value of the foreign currency you can receive.
     """
-
-    result: float = budget / exchange_rate
-
-    return result
-
-
+    return budget / exchange_rate
 
 def get_change(budget: float, exchanging_value: float) -> float:
     """
@@ -25,10 +19,7 @@ def get_change(budget: float, exchanging_value: float) -> float:
     :param exchanging_value: float - amount of your money you want to exchange now.
     :return: float - amount left of your starting currency after exchanging.
     """
-    result: float = budget - exchanging_value
-
-    return result
-
+    return budget - exchanging_value
 
 def get_value_of_bills(denomination: int, number_of_bills: int) -> int:
     """
@@ -36,22 +27,15 @@ def get_value_of_bills(denomination: int, number_of_bills: int) -> int:
     :param number_of_bills: int - total number of bills.
     :return: int - calculated value of the bills.
     """
-    result: float = denomination * number_of_bills
+    return denomination * number_of_bills
 
-    return result
-
-
-def get_number_of_bills(amount: float, denomination: int):
+def get_number_of_bills(amount: float, denomination: int) -> int:
     """
     :param amount: float - the total starting value.
     :param denomination: int - the value of a single bill.
     :return: int - number of bills that can be obtained from the amount.
     """
-
-    result: int = math.floor(amount / denomination)
-
-    return result
-
+    return int(amount // denomination)
 
 def get_leftover_of_bills(amount: float, denomination: int) -> float:
     """
@@ -59,12 +43,7 @@ def get_leftover_of_bills(amount: float, denomination: int) -> float:
     :param denomination: int - the value of a single bill.
     :return: float - the amount that is "leftover", given the current denomination.
     """
-    result: float = amount
-    while result >= denomination:
-        result -= denomination
-
-    return result
-
+    return amount % denomination
 
 def exchangeable_value(budget: float, exchange_rate: float, spread: int, denomination: int) -> int:
     """
@@ -74,10 +53,8 @@ def exchangeable_value(budget: float, exchange_rate: float, spread: int, denomin
     :param denomination: int - the value of a single bill.
     :return: int - maximum value you can get.
     """
-    value_exchanged: float = budget / (exchange_rate * ((spread / 100) + 1))
-    result: int = 0
+    actual_rate = exchange_rate * (spread / 100 + 1)
+    total_value = exchange_money(budget, actual_rate)
+    bill_count = get_number_of_bills(total_value, denomination)
 
-    while (result + denomination) < value_exchanged:
-        result += denomination
-
-    return result
+    return get_value_of_bills(denomination, bill_count)
