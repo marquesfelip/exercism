@@ -1,5 +1,10 @@
-# Virtual Env.
+# Python Virtual Env.
 python/**/ambv
+python/**/.ambv
+python/**/venv
+python/**/.venv
 
 python/**/__pycache__
 python/**/.pytest_cache
+
+python/**/**.ipynb
